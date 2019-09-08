@@ -82,8 +82,12 @@ public class Cache<T> implements ICache<T> {
         if (isEmpty())
             throw new IllegalStateException();
         
-        tail.getPrevious().setNext(null);
-        tail = tail.getPrevious();
+        if (size == 1) {
+            head = tail = null;
+        } else {
+            tail.getPrevious().setNext(null);
+            tail = tail.getPrevious();
+        }
         --size;
     }
 
