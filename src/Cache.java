@@ -48,6 +48,7 @@ public class Cache<T> implements ICache<T> {
             ++hits;
             return current.getElement();
         } else {
+            add(target);
             return null;
         }
     }
