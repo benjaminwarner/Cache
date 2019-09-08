@@ -152,6 +152,8 @@ public class Cache<T> implements ICache<T> {
     }
 
     public double getHitRate() {
+        if (accesses == 0)
+            return 0.0;
         return (double)hits / (double)accesses;
     }
 
