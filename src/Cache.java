@@ -60,7 +60,20 @@ public class Cache<T> implements ICache<T> {
     }
 
     public void add(T data) {
-        DLLNode<T> node = new DLLNode<T>(data);
+    	DLLNode<T> current = head;
+	int i;
+	for (i = 0; i < size; ++i) {
+	    if (current.getElement().equals(data))
+	        break;
+	    current = current.getNext();
+	}
+
+	// the data is already in the cache, no need
+	// to store it twice
+	if (i != size)
+	    return;
+
+	DLLNode<T> node = new DLLNode<T>(data);
 
         if (isEmpty()) {
             head = tail = node;
@@ -154,6 +167,10 @@ public class Cache<T> implements ICache<T> {
         node.setNext(head);
         head.setPrevious(node);
         head = node;
+    }
+
+    public int getHitCount() {
+    	return hits;
     }
 
     public double getHitRate() {
