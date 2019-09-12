@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 /**
  * Double-linked node implementation of ICache.
  * 
- * @author  Benjamin Warner
+ * @author Benjamin Warner
  * 
  * @param <T> store data of type T
  */
@@ -60,20 +60,20 @@ public class Cache<T> implements ICache<T> {
     }
 
     public void add(T data) {
-    	DLLNode<T> current = head;
-	int i;
-	for (i = 0; i < size; ++i) {
-	    if (current.getElement().equals(data))
-	        break;
-	    current = current.getNext();
-	}
+        DLLNode<T> current = head;
+        int i;
+        for (i = 0; i < size; ++i) {
+            if (current.getElement().equals(data))
+                break;
+            current = current.getNext();
+        }
 
-	// the data is already in the cache, no need
-	// to store it twice
-	if (i != size)
-	    return;
+        // the data is already in the cache, no need
+        // to store it twice
+        if (i != size)
+            return;
 
-	DLLNode<T> node = new DLLNode<T>(data);
+        DLLNode<T> node = new DLLNode<T>(data);
 
         if (isEmpty()) {
             head = tail = node;
@@ -94,7 +94,7 @@ public class Cache<T> implements ICache<T> {
     public void removeLast() {
         if (isEmpty())
             throw new IllegalStateException();
-        
+
         if (size == 1) {
             head = tail = null;
         } else {
@@ -170,13 +170,13 @@ public class Cache<T> implements ICache<T> {
     }
 
     public int getHitCount() {
-    	return hits;
+        return hits;
     }
 
     public double getHitRate() {
         if (accesses == 0)
             return 0.0;
-        return (double)hits / (double)accesses;
+        return (double) hits / (double) accesses;
     }
 
     public double getMissRate() {
@@ -197,7 +197,7 @@ public class Cache<T> implements ICache<T> {
         DLLNode<T> current = head;
         for (int i = 0; i < size - 1; ++i) {
             s += String.format("%s, ", current.getElement().toString());
-            current = current.getNext(); 
+            current = current.getNext();
         }
 
         s += tail.getElement();
