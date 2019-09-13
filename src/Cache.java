@@ -2,6 +2,8 @@ import java.util.NoSuchElementException;
 
 /**
  * Double-linked node implementation of ICache.
+ * Contains some additional methods that aren't part
+ * of the interface, but are nice to have.
  * 
  * @author Benjamin Warner
  * 
@@ -152,6 +154,10 @@ public class Cache<T> implements ICache<T> {
         moveToFront(current);
     }
 
+    /**
+     * Moves the node from its current position in the cache to the front.
+     * If the node to move is already in the front, does nothing.
+     */
     private void moveToFront(DLLNode<T> node) {
         if (node == head)
             return;
@@ -169,6 +175,11 @@ public class Cache<T> implements ICache<T> {
         head = node;
     }
 
+    /**
+     * Get the number of hits.
+     * 
+     * @return int
+     */
     public int getHitCount() {
         return hits;
     }
@@ -187,10 +198,23 @@ public class Cache<T> implements ICache<T> {
         return size == 0;
     }
 
+    /**
+     * Whether the cache has reached max capacity and will start to
+     * delete data.
+     * 
+     * @return boolean
+     */
     public boolean isFull() {
         return size == capacity;
     }
 
+    /**
+     * Returns a string representation of the data currently contained in the Cache
+     * for testing purposes and verification.
+     * 
+     * The representation is essentially the same as the ArrayList representation.
+     * @return String
+     */
     public String toString() {
         String s = "[";
 
